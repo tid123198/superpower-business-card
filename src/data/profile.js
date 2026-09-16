@@ -1,8 +1,9 @@
 import logo from "../assets/superpower-logo-original.jpg";
+import portrait from "../assets/jessica-liu-portrait.jpg";
+import camera from "../assets/cam-b09-transparent-reflection.png";
 
 const site = "https://www.safecarcamera.com";
 const assets = `${site}/assets`;
-const camera = `${assets}/products/cam-bt01/cam-bt01-bus-truck-camera-front-main.webp`;
 const monitor = `${assets}/products/sup-m700/sup-m700-7-inch-tft-lcd-monitor-main.webp`;
 
 export const profile = {
@@ -11,7 +12,7 @@ export const profile = {
     location: "Shenzhen, China",
     logo,
   },
-  person: { name: "Jessica Liu", title: "Business Development" },
+  person: { name: "Jessica Liu", title: "Business Development", portrait },
   pageUrl: "https://card.safecarcamera.com/",
   hero: {
     title: "Vehicle Camera Systems",
@@ -32,7 +33,7 @@ export const profile = {
     title: "Selected Solutions",
     description: "Professional vehicle vision products for commercial applications.",
     items: [
-      { title: "Vehicle Cameras", description: "Rear · Side · Front", image: camera, alt: "SuperPower CAM-BT01 bus and truck camera", url: `${site}/products/vehicle-cameras` },
+      { title: "Vehicle Cameras", description: "Rear · Side · Front", image: camera, alt: "SuperPower CAM-B09 reverse camera", url: `${site}/products/vehicle-cameras` },
       { title: "Vehicle Monitors", description: '4.3"–10.1"', image: monitor, alt: "SuperPower SUP-M700 vehicle LCD monitor on its dashboard stand", url: `${site}/products/vehicle-lcd-monitors` },
       { title: "Camera + Monitor Systems", description: "Matched system solutions", paired: true, url: `${site}/products/camera-monitor-kits` },
     ],

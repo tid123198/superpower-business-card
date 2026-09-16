@@ -56,9 +56,22 @@ function AnimatedYear({ value }) {
 export default function App() {
   const footerRef = useRef(null);
   const [footerVisible, setFooterVisible] = useState(false);
+  const [primaryCTAVisible, setPrimaryCTAVisible] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setFooterVisible(entry.isIntersecting));
     observer.observe(footerRef.current);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    const visible = new Set();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      setPrimaryCTAVisible(visible.size > 0);
+    }, { threshold: .5 });
+    document.querySelectorAll(".hero-actions .button-dark, .contact .button-light").forEach(element => observer.observe(element));
     return () => observer.disconnect();
   }, []);
   useEffect(() => {
@@ -84,7 +97,10 @@ export default function App() {
           </header>
           <div className="hero-body layout">
             <div className="hero-copy">
-              <p className="identity">{profile.person.name}<span>{profile.person.title}</span></p>
+              <div className="identity-block">
+                <span className="identity-avatar"><img src={profile.person.portrait} alt="Jessica Liu" width="64" height="64" decoding="async" /></span>
+                <p className="identity">{profile.person.name}<span>{profile.person.title}</span></p>
+              </div>
               <h1 id="hero-title">{profile.hero.title}<span>{profile.hero.subtitle}</span></h1>
               <p className="hero-description">{profile.hero.description}</p>
               <div className="hero-actions">
@@ -124,7 +140,7 @@ export default function App() {
         </section>
       </main>
       <footer className="footer layout" ref={footerRef}><div><strong>{profile.company.shortName}</strong><span>{profile.company.location}</span></div><p>{profile.copyright}</p></footer>
-      <a className={`sticky-contact ${footerVisible ? "sticky-contact--hidden" : ""}`} href={getWhatsAppUrl()} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" tabIndex={footerVisible ? -1 : undefined}><MessageCircle size={23} aria-hidden="true" /></a>
+      <a className={`sticky-contact ${footerVisible || primaryCTAVisible ? "sticky-contact--hidden" : ""}`} href={getWhatsAppUrl()} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" tabIndex={footerVisible || primaryCTAVisible ? -1 : undefined}><MessageCircle size={21} aria-hidden="true" /></a>
     </>
   );
 }
