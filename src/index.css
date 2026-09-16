@@ -140,7 +140,9 @@ h2 { margin: 0; font-size: clamp(32px, 3.1vw, 44px); font-weight: 500; line-heig
   .button-dark, .button-light { padding: 14px 22px; }
   .hero-actions .text-link { padding: 13px 19px; gap: 10px; }
   .text-link { font-size: 13px; gap: 10px; }
-  .product-pair--hero { height: 250px; width: 100%; }
+  .product-pair--hero { height: 286px; width: 100%; }
+  .product-pair--hero .pair-monitor { width: 84%; height: 86%; right: -4%; }
+  .product-pair--hero .pair-camera { width: 53%; height: 47%; left: 5%; }
   .section-space { padding-block: 100px; }
   h2 { font-size: 32px; }
   .section-heading p { font-size: 15px; }
