@@ -1,11 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, Share2 } from "lucide-react";
+import { Cog, Globe2, MessageCircle, Share2, ShieldCheck } from "lucide-react";
 import { profile, getMailtoUrl, getWhatsAppUrl } from "./data/profile";
 
 function ProductPair({ hero = false }) {
   return (
     <div className={`product-pair ${hero ? "product-pair--hero" : ""}`} aria-label="Vehicle camera and LCD monitor — project configuration confirmed separately">
-      {hero && <><span className="product-stage product-stage--camera" aria-hidden="true" /><span className="product-stage product-stage--monitor" aria-hidden="true" /></>}
+      {hero && <>
+        <div className="product-benefits" aria-label="SUPERPOWER project values">
+          <span><ShieldCheck aria-hidden="true" /><b>Safer<br />Driving</b></span>
+          <span><Cog aria-hidden="true" /><b>Reliable<br />Performance</b></span>
+          <span><Globe2 aria-hidden="true" /><b>Global<br />B2B Support</b></span>
+        </div>
+        <span className="product-stage product-stage--camera" aria-hidden="true" />
+        <span className="product-stage product-stage--monitor" aria-hidden="true" />
+      </>}
       <img className="pair-monitor" src={profile.hero.monitor} alt="SuperPower vehicle LCD monitor" loading={hero ? "eager" : "lazy"} />
       <img className="pair-camera" src={profile.hero.camera} alt="SuperPower commercial vehicle camera" loading={hero ? "eager" : "lazy"} />
     </div>
