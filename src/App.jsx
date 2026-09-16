@@ -101,7 +101,7 @@ export default function App() {
                 <span className="identity-avatar"><img src={profile.person.portrait} alt="Jessica Liu" width="64" height="64" decoding="async" /></span>
                 <p className="identity">{profile.person.name}<span>{profile.person.title}</span></p>
               </div>
-              <h1 id="hero-title">{profile.hero.title}<span>{profile.hero.subtitle}</span></h1>
+              <h1 id="hero-title">{profile.hero.title}<span> {profile.hero.subtitle}</span></h1>
               <p className="hero-description">{profile.hero.description}</p>
               <div className="hero-actions">
                 <a className="button-dark" href={getWhatsAppUrl()} target="_blank" rel="noreferrer"><MessageCircle size={17} aria-hidden="true" />WhatsApp</a>
