@@ -35,7 +35,10 @@ export const profile = {
     items: [
       { title: "Vehicle Cameras", description: "Rear · Side · Front", image: camera, alt: "SuperPower CAM-B09 reverse camera", url: `${site}/products/vehicle-cameras` },
       { title: "Vehicle Monitors", description: '4.3"–10.1"', image: monitor, alt: "SuperPower SUP-M700 vehicle LCD monitor on its dashboard stand", url: `${site}/products/vehicle-lcd-monitors` },
-      { title: "Camera + Monitor Systems", description: "Matched system solutions", paired: true, url: `${site}/products/camera-monitor-kits` },
+      { title: "Camera + Monitor Systems", description: "Matched system solutions", images: [
+        { src: `${assets}/catalog/forklift-wireless.webp`, alt: "SuperPower wireless forklift camera kit" },
+        { src: `${assets}/products/sup-m043/sup-m043-mirror-monitor-main.webp`, alt: "SuperPower SUP-M043 rear-view mirror monitor" },
+      ], url: `${site}/products/camera-monitor-kits` },
     ],
   },
   proof: {

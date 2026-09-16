@@ -115,8 +115,8 @@ export default function App() {
         <section className="solutions layout section-space" aria-labelledby="solutions-title">
           <div className="section-heading motion-reveal"><h2 id="solutions-title">{profile.solutions.title}</h2><p>{profile.solutions.description}</p></div>
           {profile.solutions.items.map((item, index) => (
-            <article className={`solution-row motion-reveal ${index % 2 ? "solution-row--reverse" : ""}`} key={item.title}>
-              <div className="solution-visual">{item.paired ? <ProductPair /> : <img src={item.image} alt={item.alt} loading="lazy" />}</div>
+            <article className={`solution-row motion-reveal ${index % 2 ? "solution-row--reverse" : ""} ${item.images ? "solution-row--kits" : ""}`} key={item.title}>
+              <div className="solution-visual">{item.images ? <div className="kit-images">{item.images.map(image => <img key={image.src} src={image.src} alt={image.alt} loading="lazy" />)}</div> : <img src={item.image} alt={item.alt} loading="lazy" />}</div>
               <div className="solution-copy"><h3>{item.title}</h3><p>{item.description}</p><a className="text-link" href={item.url} target="_blank" rel="noreferrer" aria-label={`Explore ${item.title}`}>Explore <span aria-hidden="true">→</span></a></div>
             </article>
           ))}
@@ -133,13 +133,43 @@ export default function App() {
             <h2 id="contact-title">{profile.contact.title}</h2>
             <p>{profile.contact.description}</p>
             <a className="button-light" href={getWhatsAppUrl()} target="_blank" rel="noreferrer">Chat on WhatsApp</a>
-            <a className="contact-email" href={getMailtoUrl()}>{profile.contact.email}</a>
-            <a className="contact-website" href={profile.externalLinks.website} target="_blank" rel="noreferrer">Visit safecarcamera.com <span aria-hidden="true">→</span></a>
-            <details className="contact-more"><summary>Contact details</summary><div><a href={profile.contact.vcfUrl} download>Save Contact</a><a href={profile.externalLinks.inquiry} target="_blank" rel="noreferrer">Request a Quote →</a></div></details>
+            <div className="contact-meta">
+              <dl className="contact-meta-list">
+                <div><dt>Email</dt><dd><a className="contact-email" href={getMailtoUrl()}>{profile.contact.email}</a></dd></div>
+                <div><dt>Website</dt><dd><a className="contact-website" href={profile.externalLinks.website} target="_blank" rel="noreferrer">safecarcamera.com <span aria-hidden="true">→</span></a></dd></div>
+              </dl>
+              <details className="contact-more">
+                <summary>More contact info <span aria-hidden="true">→</span></summary>
+                <dl className="contact-more-content contact-meta-list">
+                  <div><dt>Phone</dt><dd><a href={`tel:+${profile.contact.whatsapp}`}>+86 13714500919</a></dd></div>
+                  <div><dt>Location</dt><dd>{profile.company.location}</dd></div>
+                  <div><dt>Company</dt><dd>{profile.company.shortName}</dd></div>
+                </dl>
+              </details>
+            </div>
           </div>
         </section>
       </main>
-      <footer className="footer layout" ref={footerRef}><div><strong>{profile.company.shortName}</strong><span>{profile.company.location}</span></div><p>{profile.copyright}</p></footer>
+      <footer className="footer" ref={footerRef}>
+        <svg className="footer-logo-filter" width="0" height="0" aria-hidden="true" focusable="false"><defs><filter id="footer-logo-remove-white" colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -1 -1 -1 0 3" /></filter></defs></svg>
+        <div className="layout">
+          <div className="footer-help">
+            <h2>Got more questions?</h2>
+            <p>Explore our <a href={profile.externalLinks.products} target="_blank" rel="noreferrer">products</a> or <a href={getWhatsAppUrl()} target="_blank" rel="noreferrer">chat with Jessica</a></p>
+          </div>
+          <div className="footer-brand-row">
+            <a className="footer-logo" href={profile.externalLinks.website} target="_blank" rel="noreferrer" aria-label="SUPERPOWER website"><img src={profile.company.logo} alt="SUPERPOWER" loading="lazy" /></a>
+            <ShareButton />
+          </div>
+          <div className="footer-columns">
+            <nav aria-labelledby="footer-products"><h3 id="footer-products">Products</h3>{profile.solutions.items.map(item => <a key={item.title} href={item.url} target="_blank" rel="noreferrer">{item.title}</a>)}</nav>
+            <nav aria-labelledby="footer-company"><h3 id="footer-company">Company</h3><a href="#proof-title">OEM / ODM</a><a href="#solutions-title">Selected Solutions</a><a href={profile.externalLinks.website} target="_blank" rel="noreferrer">Visit Website →</a></nav>
+            <nav aria-labelledby="footer-contact"><h3 id="footer-contact">Contact</h3><a href={getWhatsAppUrl()} target="_blank" rel="noreferrer">WhatsApp</a><a href={`tel:+${profile.contact.whatsapp}`}>+86 13714500919</a><a href={profile.contact.vcfUrl} download>Save Contact</a></nav>
+            <div className="footer-direct"><h3>Let’s discuss your project</h3><p>{profile.person.name} · {profile.person.title}</p><a className="footer-email" href={getMailtoUrl()}><span>{profile.contact.email}</span><span className="footer-email-arrow" aria-hidden="true">→</span></a></div>
+          </div>
+          <div className="footer-bottom"><span>{profile.company.location}</span><p>{profile.copyright}</p></div>
+        </div>
+      </footer>
       <a className={`sticky-contact ${footerVisible || primaryCTAVisible ? "sticky-contact--hidden" : ""}`} href={getWhatsAppUrl()} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" tabIndex={footerVisible || primaryCTAVisible ? -1 : undefined}><MessageCircle size={21} aria-hidden="true" /></a>
     </>
   );
