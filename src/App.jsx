@@ -13,6 +13,7 @@ function ProductPair({ hero = false }) {
         </div>
         <span className="product-stage product-stage--camera" aria-hidden="true" />
         <span className="product-stage product-stage--monitor" aria-hidden="true" />
+        <p className="product-signature">Professional vision solutions<br />for a safer world</p>
       </>}
       <img className="pair-monitor" src={profile.hero.monitor} alt="SuperPower vehicle LCD monitor" loading={hero ? "eager" : "lazy"} />
       <img className="pair-camera" src={profile.hero.camera} alt="SuperPower commercial vehicle camera" loading={hero ? "eager" : "lazy"} />
@@ -110,7 +111,7 @@ export default function App() {
                 <span className="identity-avatar"><img src={profile.person.portrait} alt="Jessica Liu" width="64" height="64" decoding="async" /></span>
                 <p className="identity">{profile.person.name}<span>{profile.person.title}</span></p>
               </div>
-              <h1 id="hero-title">{profile.hero.title}<span> {profile.hero.subtitle}</span></h1>
+              <h1 id="hero-title"><span className="hero-title-desktop">{profile.hero.title}<span> {profile.hero.subtitle}</span></span><span className="hero-title-mobile"><span>Vehicle Camera</span><span>Systems for B2B &</span><span>OEM Projects</span></span></h1>
               <p className="hero-description">{profile.hero.description}</p>
               <div className="hero-actions">
                 <a className="button-dark" href={getWhatsAppUrl()} target="_blank" rel="noreferrer"><MessageCircle size={17} aria-hidden="true" />WhatsApp</a>

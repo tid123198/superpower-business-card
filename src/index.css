@@ -37,7 +37,7 @@ h1 span { display: block; }
 .pair-monitor { width: 76%; height: 83%; right: 0; top: 0; }
 .pair-camera { width: 45%; height: 42%; left: 0; bottom: 0; }
 .product-pair--hero { height: clamp(380px, 35vw, 520px); animation: product-in 550ms ease both; }
-.product-stage, .product-benefits { display: none; }
+.product-stage, .product-benefits, .product-signature, h1 .hero-title-mobile { display: none; }
 .section-space { padding-block: 152px; }
 h2 { margin: 0; font-size: clamp(32px, 3.1vw, 44px); font-weight: 500; line-height: 1.2; letter-spacing: -.035em; }
 .section-heading p { color: #6b6d69; font-size: 15px; line-height: 1.7; margin: 20px 0 0; }
@@ -200,6 +200,58 @@ h2 { margin: 0; font-size: clamp(32px, 3.1vw, 44px); font-weight: 500; line-heig
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
   .sticky-contact { position: fixed; z-index: 20; bottom: calc(16px + env(safe-area-inset-bottom)); right: 16px; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; padding: 0; background: #171817; color: white; border-radius: 50%; border: 0; transition: opacity 180ms ease, background-color 180ms ease; }
   .sticky-contact--hidden { opacity: 0; pointer-events: none; }
+}
+/* Mobile Hero: reference-led typography and CSS exhibition stage.
+   Scoped to Hero; solutions, proof, footer and >=768px keep their design. */
+@media (max-width: 767px) {
+  .hero { position: relative; isolation: isolate; min-height: auto; background: #f8f8f6; overflow: clip; }
+  .hero::before { content: ""; position: absolute; z-index: -1; width: 280px; height: 370px; top: 65px; right: -230px; border-radius: 50%; border: 38px solid rgba(153,196,220,.14); box-shadow: 0 0 0 30px rgba(244,180,138,.09); pointer-events: none; }
+  .hero .layout { width: calc(100% - 44px); }
+  .hero-header { padding-block: 22px 24px; }
+  .hero .logo-frame { width: 148px; }
+  .hero .share-wrap button { font-size: 15px; gap: 8px; }
+  .hero .share-wrap button svg { width: 22px; height: 22px; }
+  .hero-body { grid-template-columns: minmax(0,1fr); padding-block: 16px 0; gap: 28px; }
+  .hero-copy { min-width: 0; max-width: none; }
+  .hero .identity-block { gap: 19px; margin-bottom: 48px; }
+  .hero .identity-avatar { width: 60px; height: 60px; flex-basis: 60px; }
+  .hero .identity { font-size: 17px; font-weight: 500; letter-spacing: .06em; line-height: 1.5; }
+  .hero .identity span { margin-top: 5px; font-size: 11px; letter-spacing: .13em; color: #6d6d6d; }
+  .hero h1 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: clamp(38px,10.2vw,44px); font-weight: 600; line-height: 1.03; letter-spacing: -.055em; max-width: none; color: #111; text-wrap: initial; }
+  .hero h1::before { content: ""; display: block; width: 38px; height: 3px; margin-bottom: 18px; border-radius: 99px; background: #ff6b00; }
+  .hero h1 .hero-title-desktop { display: none; }
+  .hero h1 .hero-title-mobile, .hero h1 .hero-title-mobile > span { display: block; }
+  .hero h1 .hero-title-mobile > span { white-space: nowrap; }
+  .hero .hero-description { max-width: 360px; margin-top: 24px; font-size: 17px; line-height: 1.6; color: #6a6a67; }
+  .hero .hero-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; margin-top: 26px; }
+  .hero .hero-actions a { min-width: 0; min-height: 60px; padding: 12px 8px; font-size: 16px; font-weight: 600; gap: 8px; white-space: nowrap; }
+  .hero .hero-actions .text-link { border-width: 1.5px; }
+  .hero .hero-actions svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .hero .hero-actions .text-link > span { font-size: 22px; }
+  .product-pair--hero { --stage-height: 440px; height: var(--stage-height); width: calc(100% + 44px); margin-left: -22px; isolation: isolate; overflow: hidden; background: #f8f8f6; mix-blend-mode: normal; }
+  .product-benefits { display: grid; position: absolute; z-index: 4; inset: 8px 22px auto; grid-template-columns: repeat(3,minmax(0,1fr)); color: #555; }
+  .product-benefits > span { display: flex; min-width: 0; align-items: center; justify-content: center; gap: 6px; padding-inline: 6px; border-right: 1px solid #d8dde0; }
+  .product-benefits > span:first-child { justify-content: flex-start; padding-left: 0; }
+  .product-benefits > span:last-child { justify-content: flex-end; padding-right: 0; border: 0; }
+  .product-benefits svg { width: 28px; height: 28px; flex-shrink: 0; color: #ff6b00; stroke-width: 1.7; }
+  .product-benefits b { font-size: 9.5px; font-weight: 500; line-height: 1.3; letter-spacing: .04em; text-transform: uppercase; }
+  .product-pair--hero::before { content: ""; position: absolute; z-index: 3; width: 340px; height: 340px; right: -225px; bottom: -130px; border-radius: 50%; background: radial-gradient(circle,transparent 0 42%,rgba(153,196,220,.18) 42.5% 58%,transparent 58.5% 65%,rgba(244,180,138,.17) 65.5% 80%,transparent 80.5%); pointer-events: none; }
+  .product-stage { position: absolute; display: block; z-index: 1; border-radius: 0; background: linear-gradient(100deg,#ececea,#f3f3f1 62%,#fff); box-shadow: 0 18px 50px rgba(0,0,0,.07); }
+  .product-stage::before { content: ""; position: absolute; top: -20px; left: 0; width: 100%; height: 40px; border-radius: 50%; background: linear-gradient(165deg,#fff,#f1f1ef); box-shadow: 0 2px 5px rgba(0,0,0,.025); }
+  .product-stage--camera { left: -10%; bottom: -12px; width: 58%; height: 132px; }
+  .product-stage--monitor { right: -14%; bottom: -12px; width: 72%; height: 162px; }
+  .product-pair--hero img { z-index: 2; object-fit: contain; }
+  .product-pair--hero .pair-monitor { width: 74%; height: 70%; right: -1%; top: auto; bottom: 112px; }
+  .product-pair--hero .pair-camera { width: 48%; height: 42%; left: 0; bottom: 92px; }
+  .product-signature { display: block; position: absolute; z-index: 4; left: 22px; bottom: 24px; margin: 0; color: #666; font-size: 10px; line-height: 1.6; text-transform: uppercase; letter-spacing: .16em; }
+  .product-signature::after { content: ""; display: block; width: 24px; height: 2px; margin-top: 8px; background: #ff6b00; }
+  .hero .hero-actions a:active { opacity: .85; }
+}
+@media (max-width: 359px) {
+  .hero h1 { font-size: 35px; }
+  .hero .hero-actions { grid-template-columns: 1fr; }
+  .hero .identity { font-size: 16px; }
+  .hero .identity span { font-size: 10px; }
 }
 @media (hover: hover) and (pointer: fine) {
   .button-dark:hover, .button-light:hover, .sticky-contact:hover, .hero-actions .text-link:hover, .solution-copy .text-link:hover { background-color: #00bfe6; color: #111; border-color: #00bfe6; }
