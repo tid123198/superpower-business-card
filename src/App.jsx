@@ -5,6 +5,7 @@ import { profile, getMailtoUrl, getWhatsAppUrl } from "./data/profile";
 function ProductPair({ hero = false }) {
   return (
     <div className={`product-pair ${hero ? "product-pair--hero" : ""}`} aria-label="Vehicle camera and LCD monitor — project configuration confirmed separately">
+      {hero && <><span className="product-stage product-stage--camera" aria-hidden="true" /><span className="product-stage product-stage--monitor" aria-hidden="true" /></>}
       <img className="pair-monitor" src={profile.hero.monitor} alt="SuperPower vehicle LCD monitor" loading={hero ? "eager" : "lazy"} />
       <img className="pair-camera" src={profile.hero.camera} alt="SuperPower commercial vehicle camera" loading={hero ? "eager" : "lazy"} />
     </div>
@@ -124,7 +125,7 @@ export default function App() {
 
         <section className="proof layout section-space motion-reveal" aria-labelledby="proof-title">
           <h2 id="proof-title">{profile.proof.title}</h2>
-          <div className="proof-line">{profile.proof.items.map(item => <div key={item.value}>{/^\d+$/.test(item.value) ? <AnimatedYear value={item.value} /> : <strong>{item.value}</strong>}<span>{item.label}</span></div>)}</div>
+          <div className="proof-line">{profile.proof.items.map(item => <div className={item.value.length > 5 ? "proof-item--long" : ""} key={item.value}>{/^\d+$/.test(item.value) ? <AnimatedYear value={item.value} /> : <strong>{item.value}</strong>}<span>{item.label}</span></div>)}</div>
           <div className="credentials"><p>{profile.proof.credentials}</p><p>{profile.proof.note}</p></div>
         </section>
 
